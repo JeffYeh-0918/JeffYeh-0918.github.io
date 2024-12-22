@@ -1,0 +1,409 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+:root{
+    --background: #333;
+    --btnHover: #FDD000;
+    --primarytext: #fff;
+    --secondarytext: #000;
+}
+
+#control-menu{
+    position: absolute;
+    opacity: 0;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    display: inline-block;
+    position: relative;
+    background: var(--background);
+}
+
+
+nav{
+    margin: 20px 0 0;
+    position: relative;
+}
+.nav-bar{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.nav-bar img{
+    padding: 10px;
+}
+.nav-bar ul{
+    position: absolute;
+    top: calc(100% + (42.4px + 15px) * 3);
+    right: 0;
+    width: 0;
+    overflow: hidden;
+    transition: .5s;
+    z-index: 101;
+}
+.nav-bar .bar-list{
+    top: 100%;
+    height: calc(100vh - 50px - 20px);
+    background: rgba(0, 0, 0, .9);
+}
+.nav-bar ul li{
+    width: 95%;
+    margin: 15px 0 15px auto;
+    border-bottom: 2px solid var(--primarytext);
+    cursor: pointer;
+    &:hover >a{
+        border-radius: 20px;
+        background-color: var(--btnHover);
+        color: var(--secondarytext);
+    }
+}
+.nav-bar ul li a{
+    text-decoration: none;
+    color: var(--primarytext);
+    font-size: 18px;
+    display: inline-block;
+    padding: 10px;
+}
+
+
+.course_list{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 0;
+    height: calc(100vh - 50px - 20px);
+    background: rgba(0, 0, 0);
+    overflow: hidden;
+    transition: .5s;
+    z-index: 102;
+}
+.course_list >div{
+    width: 95%;
+    margin: 15px 0 15px auto;
+    border-bottom: 2px solid var(--primarytext);
+    cursor: pointer;
+    &:hover >a{
+        border-radius: 20px;
+        background-color: var(--btnHover);
+    }
+}
+.course_list >div a{
+    text-decoration: none;
+    color: var(--primarytext);
+    font-size: 18px;
+    display: inline-block;
+    padding: 10px;
+    width: fit-content;
+    &:hover{
+        border-radius: 20px;
+        background-color: var(--btnHover);
+        color: var(--secondarytext);
+    }
+}
+.course_list .xmark{
+    border: 0;
+    text-align: right;
+}
+.course_list i{
+    color: var(--primarytext);
+    font-size: 20px;
+    padding: 12px;
+}
+.course_title{
+    position: relative;
+}
+.extendBtns{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    &::before, &::after{
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        background: var(--primarytext);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: transform .5s;
+    }
+    &::before{
+        transform: translate(-50%, -50%);
+    }
+    &::after{
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}
+.rotateAnimation{
+    &::before, &::after{
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.detail{
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    overflow: hidden;
+    transition: .5s;
+}
+
+
+.sidebar{
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sidebar label{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-top: calc(20px + (74px - 30px) / 2);
+    position: relative;
+    
+}
+.sidebar label::after{
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 2px;
+    background: var(--primarytext);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-shadow: 0 10px 0 var(--primarytext), 0 -10px 0 var(--primarytext);
+}
+#control-menu:checked ~ nav ul{
+    width: 100%;
+}
+.search-box{
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    &:hover input{
+        width: 200px;
+    }
+    &:hover i{
+        margin-right: 10px;
+    }
+}
+.search-box i{
+    color: var(--primarytext);
+    font-size: 24px;
+}
+.search-box input{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid var(--primarytext);
+    color: var(--primarytext);
+    width: 0;
+    transition: .5s;
+}
+
+
+.breadcrumb{
+    width: fit-content;
+    margin: 30px auto 20px;
+    position: relative;
+    z-index: 1;
+}
+.breadcrumb ul {
+    display: flex;
+    list-style: none;
+    & li{
+        padding: 0 20px;
+        & a{
+            text-decoration: none;
+            color: var(--primarytext);
+        }
+    }
+    & li+li{
+        padding-left: 0; /* 除了第1個 li 左空間0px */
+    }
+    & li+li::before{
+        content:'>';
+        margin-right: 20px; /* 補充>與li之間的距離 */
+        color: var(--primarytext);
+    }
+}
+
+.banner{
+    padding: 250px 0;
+    background: #ccc;
+    /*margin-top: 94px;*/
+    position: relative;
+    overflow: hidden;
+    & img{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    & .title{
+        width: 80%;
+        position: relative;
+        margin: auto;
+    }
+}
+
+
+.control-slider{
+    width: calc(100% - 40px);
+    padding: 40px 20px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    background: var(--background);
+    z-index: 1;
+}
+.control-slider .swiper-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid var(--primarytext);
+}
+.control-slider .swiper-wrapper a{
+    color: var(--primarytext);
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 25px;
+    padding: 17px 0;
+}
+
+
+section{
+    padding: 120px 0;
+}
+#introduce{
+    & .article{
+        width: 90%;
+        margin: auto;
+        color: var(--primarytext);
+        & .content{
+            padding: 0 20px;
+            text-align: justify;
+            & h3{
+                font-size: 1.75rem;
+            } 
+            & p{
+                margin: 30px 0;
+                line-height: 1.8;
+                font-size: 1.25rem;
+            }
+        }
+    }
+}
+#otherTraining{
+    background: var(--primarytext);
+    & .section-header{
+        text-align: center;
+        font-size: 2rem;
+    }
+    & .carousel{
+        width: 90%;
+        height: 380px;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        & .slider{
+            position: absolute;
+            top: 50%;
+            display: flex;
+            transition: .5s;
+            & .item{
+                width: 300px;
+                aspect-ratio: 1/1;
+                position: relative;
+                margin-left: 10px;
+                margin-right: 10px;
+                overflow: hidden;
+                & img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                & span{
+                    width: 1px;
+                    height: 1px;
+                    border-radius: 50%;
+                    background: var(--btnHover);
+                    position: absolute;
+                    top: 100%;
+                    left: 100%;
+                    transform: translate(-50%);
+                    transition: 1s;
+                }
+                & h3{
+                    position: absolute;
+                    bottom: 10%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-size: 1.5rem;
+                    color: var(--primarytext);
+                    transition: 1s;
+                }
+                &:hover span{
+                    transform: translateX(-50%) scale(1000);
+                    opacity: .7;
+                }
+                &:hover h3{
+                    color: var(--secondarytext);
+                }
+            }
+        }
+    }
+    & .btn-slider{
+        text-align: center;
+        & span{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+        }
+        & span.btnactivate{
+            background: #333;
+        }
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .nav-bar ul {
+        top: 100%;
+        height: calc(100vh - 75px);
+        background: rgba(0, 0, 0, .9);
+    }
+    .nav-bar .bar-list {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: auto;
+        height: auto;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        & li{
+            width: auto;
+            margin: 15px 0 15px 10px;
+            border-bottom: 0;
+        }
+    }   
+}
